@@ -78,10 +78,10 @@ describe("LibraryManager Tests", () => {
         }
         const result = await manager.updateBook(updatedBook);
         expect(result).toBeFalsy();
-        // const newResult = await manager.getAllBooks();
-        // expect(newResult).toEqual([
-        //     { id: 1, title: "updated", author: "Author 1", genre: "Fiction", isBorrowed: false, rating: 4, publicationYear: new Date("2022-01-01T00:00:00.000Z") }
-        // ]);
+        const newResult = await manager.getAllBooks();
+        expect(newResult).toEqual([
+            { id: 1, title: "updated", author: "Author 1", genre: "Fiction", isBorrowed: false, rating: 4, publicationYear: new Date("2022-01-01T00:00:00.000Z") }
+        ]);
     });
 
     it("updateBook should throw an error when the ID is invalid", async () => {

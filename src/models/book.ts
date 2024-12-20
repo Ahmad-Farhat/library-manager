@@ -22,6 +22,9 @@ export class LibraryManager implements ILibraryManager {
     private _proxy: MockProxy;
 
     constructor(proxy: MockProxy) {
+        if (!proxy) {
+            throw new Error("Proxy is required");
+        }
         this._proxy = proxy;
     }
 
@@ -43,7 +46,6 @@ export class LibraryManager implements ILibraryManager {
             throw new Error("No books found");
         }
         return books.find((b) => b.id === id);
-
     }
 
     async addBook(book: IBook): Promise<void> {
@@ -57,8 +59,8 @@ export class LibraryManager implements ILibraryManager {
         if (index !== -1) {
             books.splice(index, 1);
         }
-
     }
+
     async updateBook(book: IBook): Promise<void> {
         const books = await this.getAllBooks();
         const index = books.findIndex((b) => b.id === book.id);
